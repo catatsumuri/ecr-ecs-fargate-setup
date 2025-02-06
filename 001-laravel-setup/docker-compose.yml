@@ -1,0 +1,17 @@
+services:
+  php-fpm:
+    image: my-ecs-php-fpm
+    networks:
+      - app-network
+
+  nginx:
+    image: my-ecs-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - php-fpm
+    networks:
+      - app-network
+
+networks:
+  app-network:
